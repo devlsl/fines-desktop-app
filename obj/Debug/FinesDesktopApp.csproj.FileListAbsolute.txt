@@ -1,0 +1,12 @@
+D:\Projects\FinesDesktopApp\bin\Debug\FinesDesktopApp.exe.config
+D:\Projects\FinesDesktopApp\bin\Debug\FinesDesktopApp.exe
+D:\Projects\FinesDesktopApp\bin\Debug\FinesDesktopApp.pdb
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.AssemblyReference.cache
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.SuggestedBindingRedirects.cache
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.CheckFinesForm.resources
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.Form1.resources
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.Properties.Resources.resources
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.GenerateResource.cache
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.CoreCompileInputs.cache
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.exe
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.pdb

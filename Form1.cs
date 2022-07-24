@@ -16,5 +16,12 @@ namespace FinesDesktopApp
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            CheckFinesForm checkFinesForm = new CheckFinesForm();
+            checkFinesForm.Show();
+        }
     }
 }
