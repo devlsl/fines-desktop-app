@@ -81,6 +81,8 @@
             // 
             // finesDataGridView
             // 
+            this.finesDataGridView.AllowUserToAddRows = false;
+            this.finesDataGridView.AllowUserToDeleteRows = false;
             this.finesDataGridView.AutoGenerateColumns = false;
             this.finesDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.finesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -102,104 +104,134 @@
             this.finesDataGridView.DataSource = this.finesBindingSource;
             this.finesDataGridView.Location = new System.Drawing.Point(12, 12);
             this.finesDataGridView.Name = "finesDataGridView";
-            this.finesDataGridView.Size = new System.Drawing.Size(1560, 470);
+            this.finesDataGridView.ReadOnly = true;
+            this.finesDataGridView.Size = new System.Drawing.Size(1282, 318);
             this.finesDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Постановление";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 135;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "car_number_plate";
-            this.dataGridViewTextBoxColumn2.HeaderText = "car_number_plate";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Гос. номер";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 63;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "make";
-            this.dataGridViewTextBoxColumn3.HeaderText = "make";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Марка";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 66;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "model";
-            this.dataGridViewTextBoxColumn4.HeaderText = "model";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Модель";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 52;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "color";
-            this.dataGridViewTextBoxColumn5.HeaderText = "color";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Цвет";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 73;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "driver_license_id";
-            this.dataGridViewTextBoxColumn6.HeaderText = "driver_license_id";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Вод. уд.";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 70;
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "surname";
-            this.dataGridViewTextBoxColumn7.HeaderText = "surname";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Фамилия";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 76;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "name";
-            this.dataGridViewTextBoxColumn8.HeaderText = "name";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Имя";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 60;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "patronymic";
-            this.dataGridViewTextBoxColumn9.HeaderText = "patronymic";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Отчество";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 87;
             // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "date";
-            this.dataGridViewTextBoxColumn10.HeaderText = "date";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Дата";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 84;
             // 
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "date_issue";
-            this.dataGridViewTextBoxColumn11.HeaderText = "date_issue";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Дата выписки";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 60;
             // 
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "address";
-            this.dataGridViewTextBoxColumn12.HeaderText = "address";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Адрес";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 167;
             // 
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.DataPropertyName = "status";
-            this.dataGridViewTextBoxColumn13.HeaderText = "status";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Статус";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 70;
             // 
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "fine_name";
-            this.dataGridViewTextBoxColumn14.HeaderText = "fine_name";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Штраф";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn15
             // 
             this.dataGridViewTextBoxColumn15.DataPropertyName = "amount";
-            this.dataGridViewTextBoxColumn15.HeaderText = "amount";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Размер";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 52;
             // 
             // CheckFinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1863, 521);
+            this.ClientSize = new System.Drawing.Size(1297, 530);
             this.Controls.Add(this.finesDataGridView);
             this.Name = "CheckFinesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
