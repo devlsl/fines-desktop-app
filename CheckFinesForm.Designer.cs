@@ -49,6 +49,14 @@
             this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchFineType = new System.Windows.Forms.ComboBox();
+            this.searchLabel = new System.Windows.Forms.Label();
+            this.searchFineValue = new System.Windows.Forms.TextBox();
+            this.searchFineButton = new System.Windows.Forms.Button();
+            this.searchFineStatus = new System.Windows.Forms.ComboBox();
+            this.searchSortCol = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.searchSortType = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataGridView)).BeginInit();
@@ -105,7 +113,7 @@
             this.finesDataGridView.Location = new System.Drawing.Point(12, 12);
             this.finesDataGridView.Name = "finesDataGridView";
             this.finesDataGridView.ReadOnly = true;
-            this.finesDataGridView.Size = new System.Drawing.Size(1282, 318);
+            this.finesDataGridView.Size = new System.Drawing.Size(1282, 287);
             this.finesDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -227,11 +235,92 @@
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
             this.dataGridViewTextBoxColumn15.Width = 52;
             // 
+            // searchFineType
+            // 
+            this.searchFineType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchFineType.FormattingEnabled = true;
+            this.searchFineType.Location = new System.Drawing.Point(15, 356);
+            this.searchFineType.Name = "searchFineType";
+            this.searchFineType.Size = new System.Drawing.Size(174, 21);
+            this.searchFineType.TabIndex = 2;
+            // 
+            // searchLabel
+            // 
+            this.searchLabel.AutoSize = true;
+            this.searchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.searchLabel.Location = new System.Drawing.Point(12, 328);
+            this.searchLabel.Name = "searchLabel";
+            this.searchLabel.Size = new System.Drawing.Size(57, 18);
+            this.searchLabel.TabIndex = 3;
+            this.searchLabel.Text = "Поиск";
+            // 
+            // searchFineValue
+            // 
+            this.searchFineValue.Location = new System.Drawing.Point(195, 356);
+            this.searchFineValue.Name = "searchFineValue";
+            this.searchFineValue.Size = new System.Drawing.Size(221, 20);
+            this.searchFineValue.TabIndex = 4;
+            // 
+            // searchFineButton
+            // 
+            this.searchFineButton.Location = new System.Drawing.Point(422, 354);
+            this.searchFineButton.Name = "searchFineButton";
+            this.searchFineButton.Size = new System.Drawing.Size(75, 23);
+            this.searchFineButton.TabIndex = 5;
+            this.searchFineButton.Text = "Найти";
+            this.searchFineButton.UseVisualStyleBackColor = true;
+            this.searchFineButton.Click += new System.EventHandler(this.searchFineButton_Click);
+            // 
+            // searchFineStatus
+            // 
+            this.searchFineStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchFineStatus.FormattingEnabled = true;
+            this.searchFineStatus.Location = new System.Drawing.Point(15, 386);
+            this.searchFineStatus.Name = "searchFineStatus";
+            this.searchFineStatus.Size = new System.Drawing.Size(89, 21);
+            this.searchFineStatus.TabIndex = 6;
+            // 
+            // searchSortCol
+            // 
+            this.searchSortCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchSortCol.FormattingEnabled = true;
+            this.searchSortCol.Location = new System.Drawing.Point(241, 386);
+            this.searchSortCol.Name = "searchSortCol";
+            this.searchSortCol.Size = new System.Drawing.Size(140, 21);
+            this.searchSortCol.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(123, 388);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(112, 16);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Сортировать по";
+            // 
+            // searchSortType
+            // 
+            this.searchSortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.searchSortType.FormattingEnabled = true;
+            this.searchSortType.Location = new System.Drawing.Point(387, 386);
+            this.searchSortType.Name = "searchSortType";
+            this.searchSortType.Size = new System.Drawing.Size(110, 21);
+            this.searchSortType.TabIndex = 9;
+            // 
             // CheckFinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 530);
+            this.ClientSize = new System.Drawing.Size(1297, 502);
+            this.Controls.Add(this.searchSortType);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchSortCol);
+            this.Controls.Add(this.searchFineStatus);
+            this.Controls.Add(this.searchFineButton);
+            this.Controls.Add(this.searchFineValue);
+            this.Controls.Add(this.searchLabel);
+            this.Controls.Add(this.searchFineType);
             this.Controls.Add(this.finesDataGridView);
             this.Name = "CheckFinesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -241,6 +330,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.finesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -266,5 +356,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.ComboBox searchFineType;
+        private System.Windows.Forms.Label searchLabel;
+        private System.Windows.Forms.TextBox searchFineValue;
+        private System.Windows.Forms.Button searchFineButton;
+        private System.Windows.Forms.ComboBox searchFineStatus;
+        private System.Windows.Forms.ComboBox searchSortCol;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox searchSortType;
     }
 }

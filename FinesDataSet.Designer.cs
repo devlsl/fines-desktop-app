@@ -38,6 +38,16 @@ namespace FinesDesktopApp {
         
         private fines_with_police_officerDataTable tablefines_with_police_officer;
         
+        private global::System.Data.DataRelation relationdriver_car;
+        
+        private global::System.Data.DataRelation relationcar_violation;
+        
+        private global::System.Data.DataRelation relationdriver_violation;
+        
+        private global::System.Data.DataRelation relationpolice_officer_violation;
+        
+        private global::System.Data.DataRelation relationfine_violation;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -338,6 +348,11 @@ namespace FinesDesktopApp {
                     this.tablefines_with_police_officer.InitVars();
                 }
             }
+            this.relationdriver_car = this.Relations["driver_car"];
+            this.relationcar_violation = this.Relations["car_violation"];
+            this.relationdriver_violation = this.Relations["driver_violation"];
+            this.relationpolice_officer_violation = this.Relations["police_officer_violation"];
+            this.relationfine_violation = this.Relations["fine_violation"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -362,6 +377,26 @@ namespace FinesDesktopApp {
             base.Tables.Add(this.tablefines);
             this.tablefines_with_police_officer = new fines_with_police_officerDataTable();
             base.Tables.Add(this.tablefines_with_police_officer);
+            this.relationdriver_car = new global::System.Data.DataRelation("driver_car", new global::System.Data.DataColumn[] {
+                        this.tabledriver.license_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablecar.license_idColumn}, false);
+            this.Relations.Add(this.relationdriver_car);
+            this.relationcar_violation = new global::System.Data.DataRelation("car_violation", new global::System.Data.DataColumn[] {
+                        this.tablecar.number_plateColumn}, new global::System.Data.DataColumn[] {
+                        this.tableviolation.car_number_plateColumn}, false);
+            this.Relations.Add(this.relationcar_violation);
+            this.relationdriver_violation = new global::System.Data.DataRelation("driver_violation", new global::System.Data.DataColumn[] {
+                        this.tabledriver.license_idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableviolation.driver_license_idColumn}, false);
+            this.Relations.Add(this.relationdriver_violation);
+            this.relationpolice_officer_violation = new global::System.Data.DataRelation("police_officer_violation", new global::System.Data.DataColumn[] {
+                        this.tablepolice_officer.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableviolation.police_officer_idColumn}, false);
+            this.Relations.Add(this.relationpolice_officer_violation);
+            this.relationfine_violation = new global::System.Data.DataRelation("fine_violation", new global::System.Data.DataColumn[] {
+                        this.tablefine.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableviolation.fine_idColumn}, false);
+            this.Relations.Add(this.relationfine_violation);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -609,14 +644,17 @@ namespace FinesDesktopApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public carRow AddcarRow(string number_plate, string license_id, string make, string model, string color) {
+            public carRow AddcarRow(string number_plate, driverRow parentdriverRowBydriver_car, string make, string model, string color) {
                 carRow rowcarRow = ((carRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         number_plate,
-                        license_id,
+                        null,
                         make,
                         model,
                         color};
+                if ((parentdriverRowBydriver_car != null)) {
+                    columnValuesArray[1] = parentdriverRowBydriver_car[0];
+                }
                 rowcarRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowcarRow);
                 return rowcarRow;
@@ -1872,18 +1910,30 @@ namespace FinesDesktopApp {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public violationRow AddviolationRow(string id, int fine_id, string car_number_plate, string driver_license_id, string police_officer_id, System.DateTime date, System.DateTime date_issue, string address, string status) {
+            public violationRow AddviolationRow(string id, fineRow parentfineRowByfine_violation, carRow parentcarRowBycar_violation, driverRow parentdriverRowBydriver_violation, police_officerRow parentpolice_officerRowBypolice_officer_violation, System.DateTime date, System.DateTime date_issue, string address, string status) {
                 violationRow rowviolationRow = ((violationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         id,
-                        fine_id,
-                        car_number_plate,
-                        driver_license_id,
-                        police_officer_id,
+                        null,
+                        null,
+                        null,
+                        null,
                         date,
                         date_issue,
                         address,
                         status};
+                if ((parentfineRowByfine_violation != null)) {
+                    columnValuesArray[1] = parentfineRowByfine_violation[0];
+                }
+                if ((parentcarRowBycar_violation != null)) {
+                    columnValuesArray[2] = parentcarRowBycar_violation[0];
+                }
+                if ((parentdriverRowBydriver_violation != null)) {
+                    columnValuesArray[3] = parentdriverRowBydriver_violation[0];
+                }
+                if ((parentpolice_officerRowBypolice_officer_violation != null)) {
+                    columnValuesArray[4] = parentpolice_officerRowBypolice_officer_violation[0];
+                }
                 rowviolationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowviolationRow);
                 return rowviolationRow;
@@ -3126,6 +3176,28 @@ namespace FinesDesktopApp {
                     this[this.tablecar.colorColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public driverRow driverRow {
+                get {
+                    return ((driverRow)(this.GetParentRow(this.Table.ParentRelations["driver_car"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["driver_car"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public violationRow[] GetviolationRows() {
+                if ((this.Table.ChildRelations["car_violation"] == null)) {
+                    return new violationRow[0];
+                }
+                else {
+                    return ((violationRow[])(base.GetChildRows(this.Table.ChildRelations["car_violation"])));
+                }
+            }
         }
         
         /// <summary>
@@ -3202,6 +3274,28 @@ namespace FinesDesktopApp {
             public void SetpatronymicNull() {
                 this[this.tabledriver.patronymicColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public carRow[] GetcarRows() {
+                if ((this.Table.ChildRelations["driver_car"] == null)) {
+                    return new carRow[0];
+                }
+                else {
+                    return ((carRow[])(base.GetChildRows(this.Table.ChildRelations["driver_car"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public violationRow[] GetviolationRows() {
+                if ((this.Table.ChildRelations["driver_violation"] == null)) {
+                    return new violationRow[0];
+                }
+                else {
+                    return ((violationRow[])(base.GetChildRows(this.Table.ChildRelations["driver_violation"])));
+                }
+            }
         }
         
         /// <summary>
@@ -3266,6 +3360,17 @@ namespace FinesDesktopApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetamountNull() {
                 this[this.tablefine.amountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public violationRow[] GetviolationRows() {
+                if ((this.Table.ChildRelations["fine_violation"] == null)) {
+                    return new violationRow[0];
+                }
+                else {
+                    return ((violationRow[])(base.GetChildRows(this.Table.ChildRelations["fine_violation"])));
+                }
             }
         }
         
@@ -3342,6 +3447,17 @@ namespace FinesDesktopApp {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetpatronymicNull() {
                 this[this.tablepolice_officer.patronymicColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public violationRow[] GetviolationRows() {
+                if ((this.Table.ChildRelations["police_officer_violation"] == null)) {
+                    return new violationRow[0];
+                }
+                else {
+                    return ((violationRow[])(base.GetChildRows(this.Table.ChildRelations["police_officer_violation"])));
+                }
             }
         }
         
@@ -3475,6 +3591,50 @@ namespace FinesDesktopApp {
                 }
                 set {
                     this[this.tableviolation.statusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public carRow carRow {
+                get {
+                    return ((carRow)(this.GetParentRow(this.Table.ParentRelations["car_violation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["car_violation"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public driverRow driverRow {
+                get {
+                    return ((driverRow)(this.GetParentRow(this.Table.ParentRelations["driver_violation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["driver_violation"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public police_officerRow police_officerRow {
+                get {
+                    return ((police_officerRow)(this.GetParentRow(this.Table.ParentRelations["police_officer_violation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["police_officer_violation"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public fineRow fineRow {
+                get {
+                    return ((fineRow)(this.GetParentRow(this.Table.ParentRelations["fine_violation"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["fine_violation"]);
                 }
             }
             
@@ -7380,21 +7540,21 @@ namespace FinesDesktopApp.FinesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateUpdatedRows(FinesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._carTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.car.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._carTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._driverTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.driver.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._driverTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._carTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.car.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._carTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -7435,19 +7595,19 @@ namespace FinesDesktopApp.FinesDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateInsertedRows(FinesDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._carTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.car.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._carTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._driverTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.driver.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._driverTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._carTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.car.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._carTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -7509,19 +7669,19 @@ namespace FinesDesktopApp.FinesDataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._driverTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.driver.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._driverTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._carTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.car.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._carTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._driverTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.driver.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._driverTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
