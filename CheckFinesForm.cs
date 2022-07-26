@@ -70,6 +70,9 @@ namespace FinesDesktopApp
             };
             searchSortType.DataSource = searchSortTypeItems;
             searchSortType.SelectedIndex = 0;
+
+            // payFineButton
+            payFineButton.Enabled = false;
         }
 
         private void CheckFinesForm_Load(object sender, EventArgs e)
@@ -84,40 +87,6 @@ namespace FinesDesktopApp
             System.Data.Odbc.OdbcConnection sqlConnection1 = finesTableAdapter.Connection;
             System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand();
             cmd.CommandType = System.Data.CommandType.Text;
-
-            /*string message = "";
-            string searchFineTypeString = "";
-
-
-            
-
-
-            cmd.CommandText = "select * from car";
-            cmd.Connection = sqlConnection1;
-            sqlConnection1.Open();
-
-
-            for (int i = 0; i < 4; i++)
-            {
-                System.Data.Odbc.OdbcDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Console.WriteLine("CustomerID={0}", reader.VisibleFieldCount);
-                }
-                reader.Close();
-            }
-            // reader.VisibleFieldCount - число столбцов 
-            System.Data.Odbc.OdbcDataReader reader = cmd.ExecuteReader();
-            reader.Read();
-            Console.WriteLine("CustomerID={0}", reader.VisibleFieldCount);
-            reader.Close();*/
-
-
-
-
-
-
-
 
             int error = 0;
             string message = "";
@@ -146,6 +115,7 @@ namespace FinesDesktopApp
             int reader = int.Parse(cmd.ExecuteScalar().ToString());
             if (reader == 0)
             {
+                finesDataGridView.DataSource = new object();
                 error = 1;
                 message = "Данные не найдены";
             }
@@ -153,18 +123,19 @@ namespace FinesDesktopApp
 
             if (error == 1)
             {
+                messageLabel.ForeColor = System.Drawing.Color.Red;
+                messageLabel.Text = message;
                 return ;
             }
+            message = "";
+            messageLabel.Text = message;
 
             // Получение штрафов 
-
             string getFinesQuery = "select * from fines where " + searchFineType.SelectedValue + " like '" + searchFineValue.Text + "' AND status like '" + searchFineStatus.SelectedValue + "' order by " + searchSortCol.SelectedValue + " " + searchSortType.SelectedValue + ";";            
             cmd.CommandText = getFinesQuery;
-            //cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
 
             System.Data.Odbc.OdbcDataReader reader2 = cmd.ExecuteReader();
-            //Console.WriteLine(getFinesQuery);
             finesDataGridView.DataSource = new object();
 
             DataTable newDataTable = new DataTable();
@@ -172,9 +143,50 @@ namespace FinesDesktopApp
 
             finesDataGridView.DataSource = newDataTable;
 
-            //finesDataGridView.DataSource = reader2.GetSchemaTable();
             sqlConnection1.Close();
-            
+        }
+
+        private void getAllFinesButton_Click(object sender, EventArgs e)
+        {
+            finesDataGridView.DataSource = new object();
+            finesDataGridView.DataSource = finesDataSet.fines;
+        }
+
+        private void finesDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int selectedCellRawIndex = finesDataGridView.SelectedCells[0].RowIndex;
+            bool isPaid = finesDataGridView.Rows[selectedCellRawIndex].Cells[12].Value.ToString() == "Оплачен" ? true : false;
+
+            payFineButton.Enabled = !isPaid;
+        }
+
+        private void payFineButton_Click(object sender, EventArgs e)
+        {
+            int unpaidFineRowIndex = finesDataGridView.SelectedCells[0].RowIndex;
+            string unpaidFineId = finesDataGridView.Rows[unpaidFineRowIndex].Cells[0].Value.ToString();
+
+
+            // оплата штрафа
+            System.Data.Odbc.OdbcConnection sqlConnection1 = finesTableAdapter.Connection;
+            System.Data.Odbc.OdbcCommand cmd = new System.Data.Odbc.OdbcCommand();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            string payFineQuery = "select * from payFine('" + unpaidFineId + "');";
+            cmd.CommandText = payFineQuery;
+            cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+            cmd.ExecuteNonQuery();
+            sqlConnection1.Close();
+            finesTableAdapter.Fill(finesDataSet.fines);
+            finesDataGridView.ClearSelection();
+            payFineButton.Enabled = false;
+        }
+
+        private void backToMainFormButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.Show();
         }
     }
 }

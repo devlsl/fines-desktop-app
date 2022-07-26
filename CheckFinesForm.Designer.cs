@@ -58,6 +58,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.searchSortType = new System.Windows.Forms.ComboBox();
             this.messageLabel = new System.Windows.Forms.Label();
+            this.getAllFinesButton = new System.Windows.Forms.Button();
+            this.payLabel = new System.Windows.Forms.Label();
+            this.payFineInfo = new System.Windows.Forms.Label();
+            this.payFineButton = new System.Windows.Forms.Button();
+            this.backToMainFormButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataGridView)).BeginInit();
@@ -111,11 +116,12 @@
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15});
             this.finesDataGridView.DataSource = this.finesBindingSource;
-            this.finesDataGridView.Location = new System.Drawing.Point(12, 12);
+            this.finesDataGridView.Location = new System.Drawing.Point(12, 49);
             this.finesDataGridView.Name = "finesDataGridView";
             this.finesDataGridView.ReadOnly = true;
             this.finesDataGridView.Size = new System.Drawing.Size(1282, 287);
             this.finesDataGridView.TabIndex = 1;
+            this.finesDataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.finesDataGridView_CellClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -240,7 +246,7 @@
             // 
             this.searchFineType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchFineType.FormattingEnabled = true;
-            this.searchFineType.Location = new System.Drawing.Point(15, 356);
+            this.searchFineType.Location = new System.Drawing.Point(373, 374);
             this.searchFineType.Name = "searchFineType";
             this.searchFineType.Size = new System.Drawing.Size(174, 21);
             this.searchFineType.TabIndex = 2;
@@ -249,7 +255,7 @@
             // 
             this.searchLabel.AutoSize = true;
             this.searchLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchLabel.Location = new System.Drawing.Point(12, 328);
+            this.searchLabel.Location = new System.Drawing.Point(370, 346);
             this.searchLabel.Name = "searchLabel";
             this.searchLabel.Size = new System.Drawing.Size(57, 18);
             this.searchLabel.TabIndex = 3;
@@ -257,14 +263,14 @@
             // 
             // searchFineValue
             // 
-            this.searchFineValue.Location = new System.Drawing.Point(195, 356);
+            this.searchFineValue.Location = new System.Drawing.Point(553, 374);
             this.searchFineValue.Name = "searchFineValue";
             this.searchFineValue.Size = new System.Drawing.Size(221, 20);
             this.searchFineValue.TabIndex = 4;
             // 
             // searchFineButton
             // 
-            this.searchFineButton.Location = new System.Drawing.Point(422, 354);
+            this.searchFineButton.Location = new System.Drawing.Point(780, 372);
             this.searchFineButton.Name = "searchFineButton";
             this.searchFineButton.Size = new System.Drawing.Size(75, 23);
             this.searchFineButton.TabIndex = 5;
@@ -276,7 +282,7 @@
             // 
             this.searchFineStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchFineStatus.FormattingEnabled = true;
-            this.searchFineStatus.Location = new System.Drawing.Point(15, 386);
+            this.searchFineStatus.Location = new System.Drawing.Point(373, 404);
             this.searchFineStatus.Name = "searchFineStatus";
             this.searchFineStatus.Size = new System.Drawing.Size(89, 21);
             this.searchFineStatus.TabIndex = 6;
@@ -285,7 +291,7 @@
             // 
             this.searchSortCol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchSortCol.FormattingEnabled = true;
-            this.searchSortCol.Location = new System.Drawing.Point(241, 386);
+            this.searchSortCol.Location = new System.Drawing.Point(599, 404);
             this.searchSortCol.Name = "searchSortCol";
             this.searchSortCol.Size = new System.Drawing.Size(140, 21);
             this.searchSortCol.TabIndex = 7;
@@ -294,7 +300,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(123, 388);
+            this.label1.Location = new System.Drawing.Point(481, 406);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 16);
             this.label1.TabIndex = 8;
@@ -304,7 +310,7 @@
             // 
             this.searchSortType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.searchSortType.FormattingEnabled = true;
-            this.searchSortType.Location = new System.Drawing.Point(387, 386);
+            this.searchSortType.Location = new System.Drawing.Point(745, 404);
             this.searchSortType.Name = "searchSortType";
             this.searchSortType.Size = new System.Drawing.Size(110, 21);
             this.searchSortType.TabIndex = 9;
@@ -312,16 +318,75 @@
             // messageLabel
             // 
             this.messageLabel.AutoSize = true;
-            this.messageLabel.Location = new System.Drawing.Point(384, 425);
+            this.messageLabel.Location = new System.Drawing.Point(742, 351);
             this.messageLabel.Name = "messageLabel";
             this.messageLabel.Size = new System.Drawing.Size(0, 13);
             this.messageLabel.TabIndex = 10;
+            // 
+            // getAllFinesButton
+            // 
+            this.getAllFinesButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.getAllFinesButton.Location = new System.Drawing.Point(12, 372);
+            this.getAllFinesButton.Name = "getAllFinesButton";
+            this.getAllFinesButton.Size = new System.Drawing.Size(318, 53);
+            this.getAllFinesButton.TabIndex = 11;
+            this.getAllFinesButton.Text = "Загрузить все штрафы";
+            this.getAllFinesButton.UseVisualStyleBackColor = true;
+            this.getAllFinesButton.Click += new System.EventHandler(this.getAllFinesButton_Click);
+            // 
+            // payLabel
+            // 
+            this.payLabel.AutoSize = true;
+            this.payLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payLabel.Location = new System.Drawing.Point(901, 346);
+            this.payLabel.Name = "payLabel";
+            this.payLabel.Size = new System.Drawing.Size(66, 18);
+            this.payLabel.TabIndex = 12;
+            this.payLabel.Text = "Оплата";
+            // 
+            // payFineInfo
+            // 
+            this.payFineInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payFineInfo.Location = new System.Drawing.Point(901, 374);
+            this.payFineInfo.Name = "payFineInfo";
+            this.payFineInfo.Size = new System.Drawing.Size(278, 51);
+            this.payFineInfo.TabIndex = 13;
+            this.payFineInfo.Text = "Чтобы оплатить штраф выбирите ячейку строки с неоплаченным штрафом, затем нажмите" +
+    " на кнопку \"Оплатить\"";
+            // 
+            // payFineButton
+            // 
+            this.payFineButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.payFineButton.Location = new System.Drawing.Point(1194, 372);
+            this.payFineButton.Name = "payFineButton";
+            this.payFineButton.Size = new System.Drawing.Size(90, 53);
+            this.payFineButton.TabIndex = 14;
+            this.payFineButton.Text = "Оплатить";
+            this.payFineButton.UseVisualStyleBackColor = true;
+            this.payFineButton.Click += new System.EventHandler(this.payFineButton_Click);
+            // 
+            // backToMainFormButton
+            // 
+            this.backToMainFormButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.backToMainFormButton.Location = new System.Drawing.Point(11, 12);
+            this.backToMainFormButton.Name = "backToMainFormButton";
+            this.backToMainFormButton.Size = new System.Drawing.Size(1283, 27);
+            this.backToMainFormButton.TabIndex = 15;
+            this.backToMainFormButton.Text = "Вернуться на главное окно";
+            this.backToMainFormButton.UseVisualStyleBackColor = true;
+            this.backToMainFormButton.Click += new System.EventHandler(this.backToMainFormButton_Click);
             // 
             // CheckFinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1297, 502);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1308, 449);
+            this.Controls.Add(this.backToMainFormButton);
+            this.Controls.Add(this.payFineButton);
+            this.Controls.Add(this.payFineInfo);
+            this.Controls.Add(this.payLabel);
+            this.Controls.Add(this.getAllFinesButton);
             this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.searchSortType);
             this.Controls.Add(this.label1);
@@ -332,6 +397,7 @@
             this.Controls.Add(this.searchLabel);
             this.Controls.Add(this.searchFineType);
             this.Controls.Add(this.finesDataGridView);
+            this.MaximizeBox = false;
             this.Name = "CheckFinesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Поиск штрафов";
@@ -375,5 +441,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox searchSortType;
         private System.Windows.Forms.Label messageLabel;
+        private System.Windows.Forms.Button getAllFinesButton;
+        private System.Windows.Forms.Label payLabel;
+        private System.Windows.Forms.Label payFineInfo;
+        private System.Windows.Forms.Button payFineButton;
+        private System.Windows.Forms.Button backToMainFormButton;
     }
 }
