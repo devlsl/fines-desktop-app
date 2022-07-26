@@ -42,9 +42,21 @@ namespace FinesDesktopApp
             searchSortCol.DisplayMember = "Text";
             searchSortCol.ValueMember = "Value";
             var searchSortColItems = new[] {
-                new { Text = "Постановлению", Value = "%" },
-                new { Text = "Гос. номеру", Value = "Оплачен" },
-                new { Text = "", Value = "Не оплачен" }
+                new { Text = "Постановлению", Value = "id" },
+                new { Text = "Гос. номеру", Value = "car_number_plate" },
+                new { Text = "Марке", Value = "make" },
+                new { Text = "Модели", Value = "model" },
+                new { Text = "Цвету", Value = "color" },
+                new { Text = "Вод. уд.", Value = "driver_license_id" },
+                new { Text = "Фамилии", Value = "surname" },
+                new { Text = "Имени", Value = "name" },
+                new { Text = "Отчеству", Value = "patronymic" },
+                new { Text = "Дате", Value = "date" },
+                new { Text = "Дате выписки", Value = "date_issue" },
+                new { Text = "Адресу", Value = "address" },
+                new { Text = "Статусу", Value = "status" },
+                new { Text = "Штрафу", Value = "fine_name" },
+                new { Text = "Размеру", Value = "amount" }
             };
             searchSortCol.DataSource = searchSortColItems;
             searchSortCol.SelectedIndex = 0;
@@ -53,9 +65,8 @@ namespace FinesDesktopApp
             searchSortType.DisplayMember = "Text";
             searchSortType.ValueMember = "Value";
             var searchSortTypeItems = new[] {
-                new { Text = "Все", Value = "%" },
-                new { Text = "Оплаченные", Value = "Оплачен" },
-                new { Text = "Неоплаченные", Value = "Не оплачен" }
+                new { Text = "По возрастанию", Value = "asc" },
+                new { Text = "По убыванию", Value = "desc" }
             };
             searchSortType.DataSource = searchSortTypeItems;
             searchSortType.SelectedIndex = 0;
@@ -108,20 +119,62 @@ namespace FinesDesktopApp
 
 
 
-
+            int error = 0;
             string message = "";
-
-            cmd.CommandText = "select * from car";
+            
+            // проверка на существование машины, водителя, нарушения
+            string checkForExistenceQuery = "select * from is_there_";
+            switch (searchFineType.SelectedIndex)
+            {
+                case 0:
+                    checkForExistenceQuery += "violation";
+                    break;
+                case 1:
+                    checkForExistenceQuery += "car";
+                    break;
+                case 2:
+                    checkForExistenceQuery += "driver";
+                    break;
+                default:
+                    break;
+            }
+            checkForExistenceQuery += "('" + searchFineValue.Text + "');";
+            // запрос
+            cmd.CommandText = checkForExistenceQuery;
             cmd.Connection = sqlConnection1;
             sqlConnection1.Open();
-
-
-
-            // searchFineType.SelectedValue - тип поиска
-            Console.WriteLine() ;
-
-
+            int reader = int.Parse(cmd.ExecuteScalar().ToString());
+            if (reader == 0)
+            {
+                error = 1;
+                message = "Данные не найдены";
+            }
             sqlConnection1.Close();
+
+            if (error == 1)
+            {
+                return ;
+            }
+
+            // Получение штрафов 
+
+            string getFinesQuery = "select * from fines where " + searchFineType.SelectedValue + " like '" + searchFineValue.Text + "' AND status like '" + searchFineStatus.SelectedValue + "' order by " + searchSortCol.SelectedValue + " " + searchSortType.SelectedValue + ";";            
+            cmd.CommandText = getFinesQuery;
+            //cmd.Connection = sqlConnection1;
+            sqlConnection1.Open();
+
+            System.Data.Odbc.OdbcDataReader reader2 = cmd.ExecuteReader();
+            //Console.WriteLine(getFinesQuery);
+            finesDataGridView.DataSource = new object();
+
+            DataTable newDataTable = new DataTable();
+            newDataTable.Load(reader2);
+
+            finesDataGridView.DataSource = newDataTable;
+
+            //finesDataGridView.DataSource = reader2.GetSchemaTable();
+            sqlConnection1.Close();
+            
         }
     }
 }

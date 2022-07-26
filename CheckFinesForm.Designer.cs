@@ -57,6 +57,7 @@
             this.searchSortCol = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.searchSortType = new System.Windows.Forms.ComboBox();
+            this.messageLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.finesDataGridView)).BeginInit();
@@ -308,11 +309,20 @@
             this.searchSortType.Size = new System.Drawing.Size(110, 21);
             this.searchSortType.TabIndex = 9;
             // 
+            // messageLabel
+            // 
+            this.messageLabel.AutoSize = true;
+            this.messageLabel.Location = new System.Drawing.Point(384, 425);
+            this.messageLabel.Name = "messageLabel";
+            this.messageLabel.Size = new System.Drawing.Size(0, 13);
+            this.messageLabel.TabIndex = 10;
+            // 
             // CheckFinesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1297, 502);
+            this.Controls.Add(this.messageLabel);
             this.Controls.Add(this.searchSortType);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchSortCol);
@@ -364,5 +374,6 @@
         private System.Windows.Forms.ComboBox searchSortCol;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox searchSortType;
+        private System.Windows.Forms.Label messageLabel;
     }
 }
