@@ -23,5 +23,12 @@ namespace FinesDesktopApp
             CheckFinesForm checkFinesForm = new CheckFinesForm();
             checkFinesForm.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PoliceOfficerForm policeOfficerForm = new PoliceOfficerForm();
+            policeOfficerForm.Show();
+        }
     }
 }

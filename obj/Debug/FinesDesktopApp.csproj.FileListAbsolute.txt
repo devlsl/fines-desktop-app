@@ -10,3 +10,5 @@ D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.GenerateResource.ca
 D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.csproj.CoreCompileInputs.cache
 D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.exe
 D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.pdb
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.policeOfficerForm.resources
+D:\Projects\FinesDesktopApp\obj\Debug\FinesDesktopApp.PoliceOfficerMenuForm.resources
