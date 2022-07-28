@@ -83,7 +83,7 @@ namespace FinesDesktopApp
                 return ;
             }
 
-            // добавить в базу машину через функцию
+            // добавить в базу машину
             string addCarQuery = "select addCar('" + numberPlate + "', '" + licenseIdValue.Text + "', '" + makeValue.Text + "', '" + modelValue.Text + "', '" + colorValue.Text + "');"; 
             cmd.CommandText = addCarQuery;
             cmd.Connection = sqlConnection1;

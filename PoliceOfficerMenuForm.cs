@@ -33,7 +33,6 @@ namespace FinesDesktopApp
             // Центрирование по вертикали приветствия
             greetLabel.Location = new Point((this.Width) / 2 - (greetLabel.Width) / 2, greetLabel.Location.Y);
 
-            // 
         }
 
         private string polliceOfficerId = "";
