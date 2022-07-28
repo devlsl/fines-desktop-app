@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FinesDesktopApp
 {
-    public partial class DriverManageForm : Form
+    public partial class IssueFineForm : Form
     {
-        public DriverManageForm(string polliceOfficerId)
+        public IssueFineForm(string polliceOfficerId)
         {
             InitializeComponent();
 
@@ -35,12 +35,6 @@ namespace FinesDesktopApp
             this.Hide();
             PoliceOfficerMenuForm policeOfficerMenuForm = new PoliceOfficerMenuForm(getPolliceOfficerId());
             policeOfficerMenuForm.Show();
-        }
-
-        private void DriverManageForm_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'finesDataSet.driver' table. You can move, or remove it, as needed.
-            this.driverTableAdapter.Fill(this.finesDataSet.driver);
         }
     }
 }

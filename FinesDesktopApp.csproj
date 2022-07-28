@@ -46,11 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CarManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CarManageForm.Designer.cs">
+      <DependentUpon>CarManageForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CheckFinesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CheckFinesForm.Designer.cs">
       <DependentUpon>CheckFinesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DriverManageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DriverManageForm.Designer.cs">
+      <DependentUpon>DriverManageForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinesDataSet.cs">
+      <DependentUpon>FinesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="FinesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -62,6 +77,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IssueFineForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IssueFineForm.Designer.cs">
+      <DependentUpon>IssueFineForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PoliceOfficerForm.cs">
       <SubType>Form</SubType>
@@ -77,11 +98,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="CarManageForm.resx">
+      <DependentUpon>CarManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CheckFinesForm.resx">
       <DependentUpon>CheckFinesForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DriverManageForm.resx">
+      <DependentUpon>DriverManageForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IssueFineForm.resx">
+      <DependentUpon>IssueFineForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PoliceOfficerForm.resx">
       <DependentUpon>PoliceOfficerForm.cs</DependentUpon>
@@ -121,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

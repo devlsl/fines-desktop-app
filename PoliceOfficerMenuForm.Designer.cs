@@ -56,6 +56,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Учёт автомобилей";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // greetLabel
             // 
@@ -80,6 +81,7 @@
             this.button1.TabIndex = 6;
             this.button1.Text = "Выписать новый штраф";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button5
             // 
@@ -90,6 +92,7 @@
             this.button5.TabIndex = 4;
             this.button5.Text = "Учёт водителей";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // PoliceOfficerMenuForm
             // 
